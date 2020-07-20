@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>搜索的结果：</h5>
+        </div>
+    </div>
+
+    {% if messages == '' %}
+
+    {% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            messages: {{ messages }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if search_data == '' %}
+    <div class="row">
+        <div class="col-sm-12">
+            并没有在数据库中找到您所要的内容，请您仔细确认输入是否正确<br>
+            必须完整，而且正确输入的“作者名字”或者“小说名字”
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <table role="table" aria-busy="false" aria-colcount="3" class="table b-table table-striped table-hover" ><!----><!---->
+                <thead role="rowgroup" class=""><!---->
+                <tr role="row" class="">
+                    <th role="columnheader" scope="col" aria-colindex="1" class=""><div>小说</div></th>
+                    <th role="columnheader" scope="col" aria-colindex="2" class=""><div>最新章节</div></th>
+                    <th role="columnheader" scope="col" aria-colindex="3" class=""><div>更新时间</div></th></tr>
+                </thead>
+                <tbody role="rowgroup"><!---->
+                    {% for item in search_data %}
+                    <tr role="row">
+                    <td aria-colindex="1" role="cell" class=""><a href="/book/{{item.book_id}}">{{ item.book_name }}</a></td>
+                    <td aria-colindex="2" role="cell" class=""><a href="/book/{{item.book_id}}/{{item.book_newest_url}}">{{ item.book_newest_name }}</a></td>
+                    <td aria-colindex="3" role="cell" class="">{{ item.book_last_update_time }}</td></tr>
+                    {% endfor %}
+                </tbody><!---->
+            </table>
+
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>
+
+
+{% endblock %}

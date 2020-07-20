@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 mt-3">
+            当前位置：<a href="/">首页</a>-<a href="/book/{{sql_detail_data[0].book_id}}">{{ book_name }}</a>-{{ sql_detail_data[0].detail_title }}
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-sm-12 normal-center">
+                <h3>{{ sql_detail_data[0].detail_title }}</h3>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4 normal-center">
+                <a href="{% if before_sort_id == '' %}/book/{{sql_detail_data[0].book_id}}{% else %}/book/{{sql_detail_data[0].book_id}}/{{before_sort_id}}{% endif %}">上一页</a>
+        </div>
+        <div class="col-4 normal-center">
+                <a href="/book/{{sql_detail_data[0].book_id}}">返回目录</a>
+        </div>
+        <div class="col-4 normal-center">
+                <a href="{% if next_sort_id == '' %}/book/{{sql_detail_data[0].book_id}}{% else %}/book/{{sql_detail_data[0].book_id}}/{{next_sort_id}}{% endif %}">下一页</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p style="line-height: 30px;font-size: 18px; word-wrap:break-word">
+                {% autoescape false %}
+                  {{ sql_detail_data[0].detail_content | replace('笔趣阁','明月书吧') | replace('\xa0\xa0\xa0\xa0', '<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp')  }}
+                {% endautoescape %}
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-5">
+        <div class="col-4 normal-center">
+                <a href="{% if before_sort_id == '' %}/book/{{sql_detail_data[0].book_id}}{% else %}/book/{{sql_detail_data[0].book_id}}/{{before_sort_id}}{% endif %}">上一页</a>
+        </div>
+        <div class="col-4 normal-center">
+                <a href="/book/{{sql_detail_data[0].book_id}}">返回目录</a>
+        </div>
+        <div class="col-4 normal-center">
+                <a href="{% if next_sort_id == '' %}/book/{{sql_detail_data[0].book_id}}{% else %}/book/{{sql_detail_data[0].book_id}}/{{next_sort_id}}{% endif %}">下一页</a>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

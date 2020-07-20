@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="container mt-2">
+ <div class="row">
+    <div class="col-sm-4">
+        <img src="{{ sql_book_infos[0].image_urls }}" class="card-img pt-2 pr-2 pl-2 pb-2" alt="{{ sql_book_infos[0].book_name }}">
+    </div>
+    <div class="col-sm-8" >
+        <div class="card-body mt-3" style="background-color:#e9ecef">
+        <h5 class="card-title">{{ sql_book_infos[0].book_name }}</h5>
+        <p class="card-text">作者：{{ sql_book_infos[0].book_author }}</p>
+        <p class="card-text">小说状态：{{ sql_book_infos[0].book_status }}</p>
+        <p class="card-text">更新时间：{{ sql_book_infos[0].book_last_update_time }}</p>
+        <p class="card-text">最新章节：<a href="/book/{{ sql_book_infos[0].book_id }}/{{ sql_book_infos[0].book_newest_url }}">{{ sql_book_infos[0].book_newest_name }}</a></p>
+        <p class="card-text">小说简介：{{ sql_book_infos[0].book_desc }}</p>
+        <a type="button" class="btn btn-success" href="/book/{{ sql_book_infos[0].book_id }}/{{all_cap_data[0].sort_id}}">马上开始阅读</a>
+      </div>
+    </div>
+ </div>
+</div>
+
+<div class="container mt-2">
+    <div class="row mt-5" >
+        <div class="col-sm-12 normal-center">
+            <h4>最近更新的20章图书</h4>
+        </div>
+
+    </div>
+    <div class="row mt-2">
+
+        {% for item in cap_20_data %}
+
+        <div class="col-sm-4">
+            <a href="/book/{{ item.book_id }}/{{ item.sort_id }}"> {{ item.detail_title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-12 normal-center">
+            <h4>所有章节的内容</h4>
+        </div>
+
+    </div>
+    <div class="row mt-2">
+        {% for item in all_cap_data %}
+        <div class="col-sm-4">
+            <a href="/book/{{ item.book_id }}/{{ item.sort_id }}"> {{ item.detail_title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

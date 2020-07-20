@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>{{ seo.title }}</title>
+    <meta name="keywords" content="{{ seo.keywords }}">
+    <meta name="description" content="{{ seo.description }}">
+    <link rel="stylesheet" href="/static/css/main.css">
+    {% block css %}
+    {% endblock %}
+  </head>
+  <body>
+
+<div class="container" >
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #17a2b8">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">明月书吧</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul id="tabs_nav" class="navbar-nav mr-auto mt-2 mt-lg-0">
+            {% for li in books_cates %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ li.url }}">{{ li.text }}</a>
+          </li>
+            {% endfor %}
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/index" onsubmit="return check()">
+            {{form.csrf_token}}
+          {{form.keyword(placeholder='小说名字或者作者名字',id='uname1',class_='form-control mr-sm-2')}}
+          {{form.submit(class_='btn my-2 my-sm-0 btn-secondary btn-sm')}}
+          <!-- <input class="form-control mr-sm-2" type="search" placeholder="小说名字或者作者名字" aria-label="Search">
+          <button class="btn my-2 my-sm-0 btn-secondary btn-sm" type="submit">开始搜索</button> -->
+        </form>
+        </div>
+    </nav>
+      <!-- 导航栏 -->
+</div>
+    <!-- 主体部分 -->
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- 主体部分 -->
+
+    <!-- 底部 -->
+  <footer class="panel-footer" style="width: 100%; overflow: hidden;">
+    <div class="container mt-5 mb-2">
+    <div class="row footer-top" style="text-align: center;">
+     <h4>明月书吧</h4>
+    </div>
+    <hr style="border: 1px  solid #000000; width: 100%">
+    <div class="row" style="text-align: center;">
+     <div class="col-sm-3 col-md-3 col-lg-3">
+     <a href="#" style=" color: gray;">关于我们</a>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+     <a href="#" style=" color: gray;">联系方式</a></li>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+     <a href="#" style=" color: gray;">旗下网站</a></li>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+     <a href="#" style=" color: gray;">特别致谢</a></li>
+      </div>
+    </div>
+      </div>
+    </footer>
+    <!-- 底部 -->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% block js %}
+    {% endblock %}
+
+    <script type="text/javascript">
+        //获取div下面所有的a标签（返回节点对象）
+       var myNav = document.getElementById("tabs_nav").getElementsByTagName("a");
+       //获取当前窗口的url
+
+       var myURL = document.location.href;
+
+       //循环div下面所有的链接，
+       for(var i=0;i<myNav.length;i++){
+       //获取每一个a标签的herf属性
+      var links = myNav[i].getAttribute("href");
+        // console.log(links)
+      var myURL = document.location.href;
+        // console.log(myURL);
+      //查看div下的链接是否包含当前窗口，如果存在，则给其添加样式
+      if(myURL.indexOf(links) != -1){
+            myNav[i].className += " active";
+            // console.log("if中，我改了：", myNav[i])
+        // myNav[0].className="active";
+       }else{
+            myNav[i].className = "nav-link";
+            //console.log("else中，我改了：", myNav[i])
+        }
+     }
+
+    </script>
+    <script type="text/javascript">
+
+        String.prototype.TextFilter=function(){
+            var pattern=new RegExp("[`~%!@#^=''?~！@#￥……&——‘”“'？*，,。.、]"); //[]内输入你要过滤的字符，这里是我的
+            var rs="";
+            for(var i=0;i<this.length;i++){
+                rs+=this.substr(i,1).replace(pattern,'');
+            }
+            return rs;
+        }
+        function check(){
+            console.log("checking")
+            var uname=document.getElementById("uname1").value; //通过ID取到texteara的值
+            var txt=uname.TextFilter(); //调用上面的去字符方法
+            if(uname == '' || txt!=uname){
+                alert("您输入的内容不正确，请确认后重新输入");
+                // console.log("checking 1")
+                return false;
+            }
+            else{
+                // console.log("checking 2")
+                return true
+            }
+        }
+    </script>
+    </body>
+</html>

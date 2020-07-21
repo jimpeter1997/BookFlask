@@ -111,3 +111,75 @@ class Book(object):
         self.cursor.execute(sql)
         # print("上一章：self.cursor.fetchone() = ", self.cursor.fetchone())
         return self.cursor.fetchone()
+
+    def get_xuanhuan_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='xuanhuan' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_xiuzhen_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='xiuzhen' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_dushi_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='dushi' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_lishi_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='lishi' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_wangyou_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='wangyou' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_kehuan_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='kehuan' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_yanqing_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='yanqing' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data
+
+    def get_quanben_top5(self):
+        sql = "select book_name,book_id from book_infos where book_cate='quanben' order by book_last_update_time desc limit 5;"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            # print(temp)
+            data.append(temp)
+        return data

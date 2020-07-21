@@ -126,11 +126,9 @@
           <div class="main-titile">玄幻奇幻小说排行榜</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/43552">平平无奇大师兄</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/23488">圣墟（圣虚）</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/28183">永恒圣王</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/46713">大梦主</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/20513">人皇纪</a></span></li>
+                {% for item in xuanhuan_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/28051">纯阳剑尊</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/29445">妖龙古帝</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/43252">不灭霸体诀</a></span></li>
@@ -142,7 +140,8 @@
             <li><span class="s1">14</span><span class="s2"><a href="/book/10026">逆天邪神</a></span></li>
             <li><span class="s1">15</span><span class="s2"><a href="/book/46706">横推从拔刀开始</a></span></li>
           </ul>
-            </div>
+
+        </div>
         </div>
       </div>
 
@@ -151,11 +150,9 @@
           <div class="main-titile">武侠仙侠排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/23613">最强反套路系统</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/44499">御九天</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/7562">遮天</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/43615">我真不是仙二代</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/8763">修罗武神（逆道战神）</a></span></li>
+                {% for item in xiuzhen_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/45027">千机殿</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/21528">都市绝品仙医</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/41972">我师兄实在太稳健了</a></span></li>
@@ -177,11 +174,9 @@
           <div class="main-titile">都市言情排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/29436">神医凰后</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/21517">我的绝色总裁老婆</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/29834">重生八零锦绣军婚</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/25095">邪王追妻</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/12210">重生之商界大亨</a></span></li>
+                {% for item in dushi_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/44060">万族之劫</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/41638">农门婆婆的诰命之路</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/25160">魅王宠妻：鬼医纨绔妃</a></span></li>
@@ -203,11 +198,9 @@
           <div class="main-titile">历史军事排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/43438">庶族无名</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/43668">数风流人物</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/25458">特种奶爸俏老婆</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/29749">东晋北府一丘八</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/43595">孤岛谍战</a></span></li>
+                {% for item in lishi_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/28380">我在明朝当国公</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/32611">明朝败家子</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/8178">三国重生马孟起</a></span></li>
@@ -230,11 +223,9 @@
           <div class="main-titile">科幻灵异排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/32370">绝品神医</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/13084">御鬼者传奇</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/44145">超品命师</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/43437">盖世双谐</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/45433">诸天福运</a></span></li>
+                {% for item in kehuan_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/32466">星临诸天</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/47802">我在绝地求生捡碎片</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/13371">末日轮盘</a></span></li>
@@ -255,11 +246,9 @@
           <div class="main-titile">网游竞技排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/29105">超神机械师</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/32312">王者时刻</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/29140">海贼之疾风剑豪</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/44392">轮回大劫主</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/7589">网游之天下无双</a></span></li>
+                {% for item in wangyou_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/46139">文明之万界领主</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/22487">lol之电竞天王</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/7567">全职高手</a></span></li>
@@ -280,11 +269,9 @@
           <div class="main-titile">女生频道排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/29436">神医凰后</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/29834">重生八零锦绣军婚</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/28150">帝少心头宠</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/25058">嫡女重生记</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/25625">锦绣重生</a></span></li>
+                {% for item in yanqing_data %}
+                <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+                {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/25103">绝世神医：腹黑大小姐</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/41934">天作不合</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/18006">恋爱高手</a></span></li>
@@ -298,18 +285,16 @@
           </ul>
             </div>
         </div>
-      </div>
+</div>
 
       <div class="col-sm-3">
         <div class="main-ph">
           <div class="main-titile">完本小说排行</div>
           <div class="main-ul-li">
             <ul class="main-ul">
-            <li><span class="s1">1</span><span class="s2"><a href="/book/7718">雪中悍刀行</a></span></li>
-            <li><span class="s1">2</span><span class="s2"><a href="/book/13406">纯阳战神</a></span></li>
-            <li><span class="s1">3</span><span class="s2"><a href="/book/9175">守望黎明号</a></span></li>
-            <li><span class="s1">4</span><span class="s2"><a href="/book/14745">异界海盗王</a></span></li>
-            <li><span class="s1">5</span><span class="s2"><a href="/book/8349">锻仙</a></span></li>
+            {% for item in quanben_data %}
+            <li><span class="s1">{{ loop.index}}</span><span class="s2"><a href="/book/{{ item.book_id }}">{{ item.book_name }}</a></span></li>
+            {% endfor %}
             <li><span class="s1">6</span><span class="s2"><a href="/book/7562">遮天</a></span></li>
             <li><span class="s1">7</span><span class="s2"><a href="/book/12051">超品透视</a></span></li>
             <li><span class="s1">8</span><span class="s2"><a href="/book/21197">寒门首辅</a></span></li>
@@ -323,7 +308,7 @@
           </ul>
             </div>
         </div>
-      </div>
+</div>
 
 
 

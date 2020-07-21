@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort, request
 from books import Book
-from settings import BOOK_CATES, BOOK_LIST
+from settings import BOOK_CATES, BOOK_LIST, TITLES
 from flask_wtf import CSRFProtect
 from forms import SearchForm
 import re
@@ -87,18 +87,34 @@ def index():
                 messages = messages,
                 search_data = search_data
             )
-    
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.host)
+    book = Book()
+    xuanhuan_data = book.get_xuanhuan_top5()
+    xiuzhen_data = book.get_xiuzhen_top5()
+    dushi_data = book.get_dushi_top5()
+    lishi_data = book.get_lishi_top5()
+    wangyou_data = book.get_wangyou_top5()
+    kehuan_data = book.get_kehuan_top5()
+    yanqing_data = book.get_yanqing_top5()
+    quanben_data = book.get_quanben_top5()
+    print("用这个去区分每个不同的域名给他不同的关键词和描述 ------------------------>", request.path)
     seo = {
-        "title": "首页标题",
-        "keywords" : "首页关键词",
-        "description" : "首页描述"
+        "title": TITLES[request.path][0],
+        "keywords" : TITLES[request.path][1],
+        "description" : TITLES[request.path][2]
     }
     return render_template(
         "index.html",
         seo = seo,
         books_cates = BOOK_CATES,
-        form = SearchForm()
+        form = SearchForm(),
+        xuanhuan_data = xuanhuan_data,
+        xiuzhen_data = xiuzhen_data,
+        dushi_data = dushi_data,
+        lishi_data = lishi_data,
+        wangyou_data = wangyou_data,
+        kehuan_data = kehuan_data,
+        yanqing_data = yanqing_data,
+        quanben_data = quanben_data
     )
 
 
@@ -123,11 +139,11 @@ def show_book_cates(book_cate):
     else:
         print("请求不合法")
         abort(404)
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.host)
+    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.path)
     seo = {
-        "title": "首页标题",
-        "keywords" : "首页关键词",
-        "description" : "首页描述"
+        "title": TITLES[request.path][0],
+        "keywords" : TITLES[request.path][1],
+        "description" : TITLES[request.path][2]
     }
     book = Book()
     # 最新更新的30章内容
@@ -146,12 +162,6 @@ def show_book_cates(book_cate):
 # 图书首页信息
 @app.route('/book/<int:book_id>')
 def show_book_index(book_id):
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.host)
-    seo = {
-        "title": "首页标题",
-        "keywords" : "首页关键词",
-        "description" : "首页描述"
-    }
     book = Book()
     # 获取图书信息
     sql_book_infos = book.get_book_infos_by_book_id(book_id)
@@ -160,6 +170,14 @@ def show_book_index(book_id):
         abort(404)
     cap_20_data = book.get_book_newest_20_caps_by_book_id(book_id)
     all_cap_data = book.get_book_all_caps_by_book_id(book_id)
+    seo = {
+        "title": sql_book_infos[0]['book_name']+'('+sql_book_infos[0]['book_author']+")最新章节_"+ sql_book_infos[0]['book_name']+TITLES['bookindex'][0], # 大道朝天(猫腻)最新章节_大道朝天在线阅读 _笔趣阁
+        "keywords" : sql_book_infos[0]['book_name']+"最新章节列表,"+sql_book_infos[0]['book_name']+"无弹窗广告,"+sql_book_infos[0]['book_name']+"全文阅读,"+sql_book_infos[0]['book_author'],
+        # 大道朝天最新章节列表,大道朝天无弹窗广告,大道朝天全文阅读,猫腻
+        "description" : TITLES['bookindex'][2]+sql_book_infos[0]['book_author']+"大神最新作品《"+sql_book_infos[0]['book_name']+"》最新章节全文免费阅读，"+sql_book_infos[0]['book_name']+"全集，"+ \
+            sql_book_infos[0]['book_name']+"5200，"+sql_book_infos[0]['book_name']+"无弹窗！请关注"+sql_book_infos[0]['book_name']+"吧，明月书吧最新最快更新"+sql_book_infos[0]['book_name']+"最新章节。"
+        # 笔趣阁提供猫腻大神最新作品《大道朝天》最新章节全文免费阅读，大道朝天全集，大道朝天5200，大道朝天无弹窗！请关注大道朝天吧，本站最新最快更新大道朝天最新章节。
+    }
     return render_template(
         "book_index.html",
         seo = seo,
@@ -173,12 +191,6 @@ def show_book_index(book_id):
 # 图书详情页
 @app.route('/book/<int:book_id>/<int:sort_id>')
 def show_book_detail(book_id,sort_id):
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.host)
-    seo = {
-        "title": "首页标题",
-        "keywords" : "首页关键词",
-        "description" : "首页描述"
-    }
     book=Book()
     sql_book_id_data = book.get_book_infos_by_book_id(book_id)
     if len(sql_book_id_data) == 0:
@@ -198,7 +210,14 @@ def show_book_detail(book_id,sort_id):
         before_sort_id = ''
     else:
         before_sort_id = before_data['sort_id']
-
+    seo = {
+        "title": sql_detail_data[0]['detail_title']+'_'+book_name+TITLES['bookdetail'][0],
+        # 第二十七章来了_大道朝天 - 笔趣阁
+        "keywords" : book_name+','+sql_book_id_data[0]['book_author']+','+sql_detail_data[0]['detail_title'],
+        # 大道朝天,猫腻,第二十七章来了
+        "description" : book_name+"无弹窗,是作者"+sql_book_id_data[0]['book_author']+"所著的好看的小说"+TITLES['bookdetail'][2]
+        # 大道朝天无弹窗,是作者猫腻所著的玄幻小说类小说，本站提供无弹窗阅读环境
+    }
     return render_template(
         "book_detail.html",
         seo = seo,

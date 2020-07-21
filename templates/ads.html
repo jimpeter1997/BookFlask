@@ -1,0 +1,71 @@
+<style media="screen">
+    @media (max-width: 500px) {
+        #main-left-ad{
+            display: none;
+        }
+
+        #main-right-ad{
+            display: none;
+        }
+        #main-top-ad{
+            display: none;
+        }
+        #main-top-ad-phone{
+            position: fixed;
+            bottom: auto;
+            top:0;
+            left: 0;
+            z-index: 99999;
+            right: 0;
+        }
+        #top-img{
+            width:100%
+        }
+
+    }
+    @media (min-width: 501px) {
+    #main-top-ad-phone{
+        display:none;
+    }
+    #top-img{
+        width: 100%;
+    }
+
+    #main-left-ad{
+        position: fixed;
+        bottom: auto;
+        top:0;
+        width: 150px;
+        height: 600px;
+        z-index: 99999;
+        margin-top: 158px;
+        left: 0;
+    }
+
+    #main-right-ad{
+        position:fixed;
+        bottom: auto;
+        top:0;
+        width: 150px;
+        height: 600px;
+        z-index: 99999;
+        margin-top: 158px;
+        right: 0;
+    }
+}
+</style>
+
+<div class="container">
+    <div id="main-top-ad">
+        <a target="_blank" href="http://www.jidcy.com/"><img id="top-img" src="https://i.loli.net/2020/07/01/LYOu8yNXT93E4H1.jpg"  alt="服务器-云服务器-vps-ssl-域名"/></a>
+    </div>
+    <div id="main-top-ad-phone">
+        <a target="_blank" href="http://www.jidcy.com/"><img id="top-img" src="https://i.loli.net/2020/06/11/MLPaI12eFsyRXck.jpg"  alt="服务器-云服务器-vps-ssl-域名"/></a>
+    </div>
+    <div id="main-left-ad">
+        <a target="_blank" href="http://www.jidcy.com/"><img id="left-img" src="https://i.loli.net/2020/06/11/sDlvEWaeSxzpYgb.jpg"  alt="服务器-云服务器-vps-ssl-域名"/></a>
+    </div>
+    <div id="main-right-ad">
+        <a target="_blank" href="http://www.jidcy.com/"><img id="right-img" src="https://i.loli.net/2020/06/11/sDlvEWaeSxzpYgb.jpg"  alt="服务器-云服务器-vps-ssl-域名" /></a>
+    </div>
+</div>

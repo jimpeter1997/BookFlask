@@ -12,7 +12,7 @@ scrf = CSRFProtect(app)
 
 # 检查是否含有特殊字符
 def is_string_validate(str):
-    sub_str = re.sub(u'^[_a-zA-Z0-9\u4e00-\u9fa5]+$',"",str)
+    sub_str = re.sub(r'！@#￥%……&×;；=',"",str)
     if len(str) == len(sub_str):
         # 说明合法
         return False
@@ -39,6 +39,7 @@ def index():
             abort(404)
         print("keyword = ", keyword)
         if is_string_validate(keyword):
+            print("输入有误，请确认后重新输入")
             messages = "输入有误，请确认后重新输入"
             search_data = ""
             seo = {
@@ -57,6 +58,7 @@ def index():
         book = Book()
         search_data = book.search_infos_by_key(keyword)
         if len(search_data) == 0:
+            print("没有获得结果")
             messages = ""
             search_data = ""
             seo = {
@@ -73,6 +75,7 @@ def index():
                 search_data = search_data
             )
         else:
+            print("有获得结果")
             messages = ""
             seo = {
                 "title": "搜索结果页面",
@@ -96,7 +99,7 @@ def index():
     kehuan_data = book.get_kehuan_top5()
     yanqing_data = book.get_yanqing_top5()
     quanben_data = book.get_quanben_top5()
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ------------------------>", request.path)
+    # print("用这个去区分每个不同的域名给他不同的关键词和描述 ------------------------>", request.path)
     seo = {
         "title": TITLES[request.path][0],
         "keywords" : TITLES[request.path][1],
@@ -134,12 +137,12 @@ request的说明：
 def show_book_cates(book_cate):
     # 判断请求是否合法
     if book_cate in BOOK_LIST:
-        print("请求合法")
+        # print("请求合法")
         pass
     else:
-        print("请求不合法")
+        # print("请求不合法")
         abort(404)
-    print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.path)
+    # print("用这个去区分每个不同的域名给他不同的关键词和描述 ", request.path)
     seo = {
         "title": TITLES[request.path][0],
         "keywords" : TITLES[request.path][1],
@@ -195,7 +198,7 @@ def show_book_detail(book_id,sort_id):
     sql_book_id_data = book.get_book_infos_by_book_id(book_id)
     if len(sql_book_id_data) == 0:
         abort(404)
-    print("图书信息：------",sql_book_id_data)
+    # print("图书信息：------",sql_book_id_data)
     book_name = sql_book_id_data[0]['book_name']
     sql_detail_data = book.get_book_detail_by_book_id_sort_id(book_id, sort_id)
     if len(sql_detail_data) == 0:
